@@ -49,9 +49,11 @@ let state = (function() {
     if (saved) {
         try {
             const parsed = JSON.parse(saved);
-            // Ensure new structures exist
+            // Deep merge config to ensure all keys exist
+            parsed.config = { ...DEFAULT_STATE.config, ...parsed.config };
             if (!parsed.loans) parsed.loans = [];
             if (!parsed.tasks) parsed.tasks = DEFAULT_STATE.tasks;
+            if (!parsed.shops) parsed.shops = DEFAULT_STATE.shops;
             return parsed;
         } catch (e) {
             return DEFAULT_STATE;
@@ -104,7 +106,10 @@ export const tasksData = state.tasks;
 
 export const db = {
     save: () => saveState(),
-    updateConfig: (newConfig) => { Object.assign(state.config, newConfig); saveState(); },
+    updateConfig: (newConfig) => {
+        Object.assign(state.config, newConfig);
+        return saveState();
+    },
 
     addSale: (record) => {
         const newEntry = {

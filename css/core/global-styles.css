@@ -31,24 +31,52 @@ body.theme-vibrant-light {
     --glass-blur: blur(20px);
 }
 
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    outline: none !important;
-    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-x: hidden;
 }
 
-html, body {
+body {
     width: 100%;
     min-height: 100vh;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: auto !important; /* Forces scrolling to be enabled */
     background-color: var(--bg-app);
     color: var(--text-main);
     font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-overflow-scrolling: touch;
+    position: relative;
+    line-height: 1.5;
+}
+
+/* Ensure the main container doesn't block scrolling */
+.app-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: none !important;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Optimize transitions by separating transform to avoid layout jank during scroll */
+.page-transition,
+.nav-item,
+.hub-item,
+.vibrant-3d-button,
+.executive-profile,
+.luxury-card,
+.action-terminal {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .luxury-card {

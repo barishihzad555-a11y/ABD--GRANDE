@@ -1,0 +1,174 @@
+/* ABD LUXURY | CAMERA COMMAND SYSTEM */
+
+.surveillance-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 20px;
+    position: relative;
+}
+
+.camera-preview-card {
+    background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(15, 15, 15, 0.98));
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 20px;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.camera-preview-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05), transparent);
+    pointer-events: none;
+}
+
+.camera-preview-card:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.1);
+}
+
+.camera-monitor {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0px;
+}
+
+.camera-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0px, transparent 1px, transparent 2px);
+    background-size: 100% 3px;
+    z-index: 2;
+    opacity: 0.5;
+}
+
+.camera-hud {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+}
+
+.rec-dot {
+    width: 8px;
+    height: 8px;
+    background: #ff3b3b;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff3b3b;
+    animation: blink 1.2s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.9); }
+}
+
+.camera-controls-mini {
+    display: flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-blur: 10px;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-cam-mini {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.btn-cam-mini:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: #D4AF37;
+}
+
+.camera-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cam-meta h4 {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+}
+
+.cam-meta p {
+    color: #64748b;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Featured Camera (Home Page Large View) */
+.featured-camera {
+    grid-column: span 2;
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.95));
+}
+
+.featured-camera .camera-monitor {
+    aspect-ratio: 21/9;
+}
+
+.camera-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.scanline-effect {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.03), transparent);
+    top: -100px;
+    animation: scan 4s linear infinite;
+    z-index: 2;
+}
+
+@keyframes scan {
+    0% { top: -100px; }
+    100% { top: 100%; }
+}
+
+.camera-status-tag {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+

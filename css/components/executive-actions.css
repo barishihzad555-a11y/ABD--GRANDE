@@ -1,0 +1,68 @@
+/*
+    ============================================================================
+    ABD LUXURY SYSTEM | PROTECTED COMPONENT: EXECUTIVE TERMINALS (3D)
+    ============================================================================
+    WARNING: This is a MASTER ARCHITECTURE file.
+    Any modification to the 3D depth, lighting, or responsive height
+    may compromise the system's luxury visual integrity.
+    DO NOT ALTER without executive authorization.
+    ============================================================================
+*/
+
+.executive-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 0.5rem;
+}
+
+.action-terminal {
+    position: relative;
+    height: 70px;
+    background: #111418;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+.action-terminal .icon-container {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(212, 175, 55, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D4AF37;
+}
+
+.action-terminal .icon-container i {
+    width: 18px;
+    height: 18px;
+}
+
+.action-label {
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #CBD5E1;
+    text-align: center;
+}
+
+/* Specific Styles for Terminals */
+.terminal-loans .icon-container { border: 1px solid rgba(255, 215, 0, 0.2); }
+.terminal-staff .icon-container { border: 1px solid rgba(0, 191, 255, 0.2); }
+.terminal-tasks .icon-container { border: 1px solid rgba(50, 205, 50, 0.2); }
+
+@media (max-width: 480px) {
+    .executive-actions-grid { gap: 10px; }
+    .action-terminal { height: 75px; border-radius: 16px; }
+    .action-label { font-size: 9px; letter-spacing: 0.05em; }
+    .action-terminal .icon-container { width: 38px; height: 38px; }
+}

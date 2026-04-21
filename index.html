@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--
+    ============================================================================
+    ABD LUXURY SYSTEM | MASTER CORE ARCHITECTURE
+    ============================================================================
+    PROTECTION STATUS: ACTIVE
+    INTEGRITY LEVEL: EXECUTIVE
+    WARNING: This file is a protected core component. Any structural changes
+    without impact analysis may compromise the global enterprise command.
+    ============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ABD Luxury | Global Enterprise Command</title>
+
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/components/hub-buttons.css">
+    <link rel="stylesheet" href="css/components/stats-meters.css">
+    <link rel="stylesheet" href="css/components/camera-system.css">
+    <link rel="stylesheet" href="css/components/profile.css">
+
+    <!-- Firebase SDK Preload (World-Class Performance) -->
+    <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js">
+    <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js">
+</head>
+<body>
+    <div class="app-container">
+        <!-- GLOBAL NAVIGATION -->
+        <nav class="fixed bottom-0 left-0 right-0 bg-black/60 backdrop-blur-3xl border-t border-white/5 px-6 pb-10 pt-4 flex items-center justify-around z-50 md:hidden">
+            <button onclick="window.app.switchView('home')" class="nav-item active flex flex-col items-center gap-1" id="nav-home">
+                <i data-lucide="layout-grid" class="w-6 h-6"></i>
+                <span class="text-[9px] font-extrabold uppercase tracking-widest">Empire</span>
+            </button>
+            <button onclick="window.app.switchView('sales')" class="nav-item flex flex-col items-center gap-1" id="nav-sales">
+                <i data-lucide="banknote" class="w-6 h-6"></i>
+                <span class="text-[9px] font-extrabold uppercase tracking-widest">Revenue</span>
+            </button>
+            <button onclick="window.app.switchView('employees')" class="nav-item flex flex-col items-center gap-1" id="nav-employees">
+                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                <span class="text-[9px] font-extrabold uppercase tracking-widest">Assets</span>
+            </button>
+            <button onclick="window.app.switchView('camera')" class="nav-item flex flex-col items-center gap-1" id="nav-camera">
+                <i data-lucide="eye" class="w-6 h-6"></i>
+                <span class="text-[9px] font-extrabold uppercase tracking-widest">Vision</span>
+            </button>
+            <button onclick="window.app.switchView('settings')" class="nav-item flex flex-col items-center gap-1" id="nav-settings">
+                <i data-lucide="sliders" class="w-6 h-6"></i>
+                <span class="text-[9px] font-extrabold uppercase tracking-widest">Core</span>
+            </button>
+        </nav>
+
+        <!-- HOME VIEW -->
+        <div id="view-home" class="page-transition active-view h-full flex flex-col gap-2 pb-20 md:pb-0 overflow-hidden">
+            <!-- TOP BAR -->
+            <header class="flex justify-between items-center shrink-0 mb-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#8A6D3B] flex items-center justify-center shadow-lg">
+                        <i data-lucide="diamond" class="w-5 h-5 text-black"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-sm font-bold tracking-[0.2em] gold-text uppercase">ABD COMMAND</h1>
+                        <p class="text-[7px] text-slate-500 font-black uppercase tracking-[0.3em] mt-0.5">Global Executive Network</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex flex-col items-end">
+                        <p id="current-time" class="text-sm font-light tracking-widest gold-text">00:00</p>
+                    </div>
+
+                    <!-- LUXURY EXECUTIVE PROFILE -->
+                    <div class="executive-profile" onclick="window.app.switchView('settings')">
+                        <div class="profile-info text-right hidden xs:flex">
+                            <div class="flex items-center justify-end gap-1">
+                                <span class="profile-name" id="admin-name-display">ALEXANDER ABD</span>
+                                <div id="admin-verified-badge" class="hidden">
+                                    <i data-lucide="badge-check" class="w-3 h-3 text-blue-400 fill-blue-400/20"></i>
+                                </div>
+                            </div>
+                            <span class="profile-role" id="admin-role-display">EXECUTIVE OWNER</span>
+                        </div>
+                        <div class="avatar-container relative">
+                            <div class="avatar-frame">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200" alt="Profile" class="w-full h-full object-cover">
+                            </div>
+                            <div class="status-indicator"></div>
+                            <div id="admin-avatar-verified" class="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full border border-black items-center justify-center hidden">
+                                <i data-lucide="check" class="w-2.5 h-2.5 text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 4D ORBITAL GAUGE METERS -->
+            <div class="stats-grid shrink-0 mt-2">
+                <div class="meter-wrapper meter-income">
+                    <div class="radial-gauge">
+                        <div class="gauge-glass"></div>
+                        <svg class="gauge-svg" viewBox="0 0 104 104">
+                            <circle class="gauge-track" cx="52" cy="52" r="50"></circle>
+                            <circle class="gauge-fill" cx="52" cy="52" r="50" style="--dash-offset: 78.5;"></circle>
+                        </svg>
+                        <div class="gauge-content">
+                            <p class="gauge-value">1.25M</p>
+                            <p class="gauge-percent">75% CAP</p>
+                        </div>
+                    </div>
+                    <div class="gauge-label">Monthly Income</div>
+                    <div class="gauge-status">Revenue High</div>
+                </div>
+
+                <div class="meter-wrapper meter-expense">
+                    <div class="radial-gauge">
+                        <div class="gauge-glass"></div>
+                        <svg class="gauge-svg" viewBox="0 0 104 104">
+                            <circle class="gauge-track" cx="52" cy="52" r="50"></circle>
+                            <circle class="gauge-fill" cx="52" cy="52" r="50" style="--dash-offset: 188.4;"></circle>
+                        </svg>
+                        <div class="gauge-content">
+                            <p class="gauge-value">450K</p>
+                            <p class="gauge-percent">40% EXP</p>
+                        </div>
+                    </div>
+                    <div class="gauge-label">Monthly Expense</div>
+                    <div class="gauge-status">Operational</div>
+                </div>
+
+                <div class="meter-wrapper meter-debt">
+                    <div class="radial-gauge">
+                        <div class="gauge-glass"></div>
+                        <svg class="gauge-svg" viewBox="0 0 104 104">
+                            <circle class="gauge-track" cx="52" cy="52" r="50"></circle>
+                            <circle class="gauge-fill" cx="52" cy="52" r="50" style="--dash-offset: 266.9;"></circle>
+                        </svg>
+                        <div class="gauge-content">
+                            <p class="gauge-value">120K</p>
+                            <p class="gauge-percent">15% DEBT</p>
+                        </div>
+                    </div>
+                    <div class="gauge-label">Monthly Debt</div>
+                    <div class="gauge-status">Liabilities</div>
+                </div>
+            </div>
+
+            <!-- HUB GRID -->
+            <section class="flex flex-col gap-1 shrink-0 mt-4">
+                <div class="flex justify-between items-center px-1">
+                    <h3 class="text-[8px] font-black uppercase tracking-[0.3em] text-slate-500">Command Centers</h3>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span class="text-[7px] font-bold text-emerald-500 uppercase tracking-widest">Active</span>
+                    </div>
+                </div>
+                <div class="hub-grid !gap-2" id="shop-cards-container"></div>
+            </section>
+
+            <!-- LIVE TACTICAL COMMAND -->
+            <section class="flex flex-col gap-1 shrink-0 mt-4">
+                <div class="flex justify-between items-center px-1">
+                    <h3 class="text-[8px] font-black uppercase tracking-[0.3em] text-slate-500">Live Tactical Feed</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="camera-status-tag">Secure</span>
+                        <span class="text-[7px] font-bold text-slate-500 uppercase tracking-widest" id="cam-timestamp">00:00:00</span>
+                    </div>
+                </div>
+
+                <div id="home-featured-camera" class="camera-preview-card featured-camera group cursor-pointer !p-2" onclick="window.app.switchView('camera')">
+                    <!-- This will be populated by JS for dynamic content -->
+                    <div class="camera-monitor !mb-0">
+                        <div class="camera-overlay"></div>
+                        <div class="scanline-effect"></div>
+                        <div class="camera-hud !top-2 !left-2 !right-2">
+                            <div class="flex items-center gap-2">
+                                <div class="rec-dot"></div>
+                                <span class="text-[7px] font-black text-white uppercase tracking-[0.2em]">AIRPORT ROAD GRANDE - CAM_01</span>
+                            </div>
+                            <div class="flex gap-1">
+                                <span class="text-[6px] font-mono text-emerald-500 bg-black/40 px-1.5 py-0.5 rounded border border-emerald-500/20">4K</span>
+                                <span class="text-[6px] font-mono text-[#D4AF37] bg-black/40 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">60FPS</span>
+                            </div>
+                        </div>
+
+                        <div class="video-feed-main">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200" alt="Main Feed" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXECUTIVE ACTION TERMINALS -->
+            <section class="flex flex-col gap-1 shrink-0 mt-4">
+                <div class="flex justify-between items-center px-1">
+                    <h3 class="text-[8px] font-black uppercase tracking-[0.3em] text-slate-500">Executive Terminals</h3>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-1 h-1 rounded-full bg-amber-500 animate-pulse"></span>
+                        <span class="text-[7px] font-bold text-amber-500 uppercase tracking-widest">Priority</span>
+                    </div>
+                </div>
+                <div class="executive-actions-grid" id="executive-terminals-container">
+                    <div class="action-terminal terminal-loans" onclick="window.app.switchView('loans')">
+                        <div class="icon-container">
+                            <i data-lucide="landmark" class="w-6 h-6"></i>
+                        </div>
+                        <span class="action-label">LOANS</span>
+                    </div>
+                    <div class="action-terminal terminal-staff" onclick="window.app.switchView('employees')">
+                        <div class="icon-container">
+                            <i data-lucide="users-round" class="w-6 h-6"></i>
+                        </div>
+                        <span class="action-label">STAFF</span>
+                    </div>
+                    <div class="action-terminal terminal-tasks" onclick="window.app.switchView('tasks')">
+                        <div class="icon-container">
+                            <i data-lucide="calendar-check" class="w-6 h-6"></i>
+                        </div>
+                        <span class="action-label">TODAY</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- PAGE VIEW -->
+        <div id="view-page" class="page-transition hidden opacity-0 translate-y-10 h-full flex flex-col gap-2 pb-20 md:pb-0 overflow-hidden">
+            <header class="flex justify-between items-center shrink-0 mb-1 px-1">
+                <div class="flex items-center gap-3">
+                    <button onclick="window.app.goBack()" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                        <i data-lucide="chevron-left" class="w-5 h-5 text-[#D4AF37]"></i>
+                    </button>
+                    <div>
+                        <h1 id="page-title" class="text-sm font-bold tracking-[0.1em] text-white uppercase">Page Title</h1>
+                        <p id="page-subtitle" class="text-[7px] text-slate-500 font-black uppercase tracking-[0.2em]">Module Description</p>
+                    </div>
+                </div>
+                <div id="page-actions" class="flex gap-2"></div>
+            </header>
+            <main id="page-content" class="flex-1 overflow-hidden px-1"></main>
+        </div>
+    </div>
+
+    <!-- Custom Logic -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

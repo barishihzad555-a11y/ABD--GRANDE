@@ -1,0 +1,84 @@
+/*
+    ABD LUXURY | CORE GLOBAL STYLES
+    Locked - Essential for website layout and base theme.
+*/
+
+:root {
+    /* DEFAULT DARK THEME (Current) */
+    --bg-app: #0A0C10;
+    --text-main: #F8FAFC;
+    --text-dim: #64748B;
+    --accent: #D4AF37;
+    --accent-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #D4AF37 100%);
+    --card-bg: rgba(17, 20, 28, 0.85);
+    --card-border: rgba(212, 175, 55, 0.1);
+    --nav-bg: rgba(0, 0, 0, 0.6);
+    --shadow-3d: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    --glass-blur: blur(25px);
+}
+
+/* LIGHT & VIBRANT THEME - WORLD CLASS DESIGN */
+body.theme-vibrant-light {
+    --bg-app: #F0F4F8; /* Soft Clean Light Blue Gray */
+    --text-main: #0F172A; /* Deep Slate for maximum readability */
+    --text-dim: #475569;
+    --accent: #6366F1; /* Electric Indigo */
+    --accent-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --card-border: rgba(99, 102, 241, 0.2);
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --shadow-3d: 0 20px 40px -12px rgba(99, 102, 241, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.1);
+    --glass-blur: blur(20px);
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: none !important;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.luxury-card {
+    background: var(--card-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--card-border);
+    border-radius: 2rem;
+    box-shadow: var(--shadow-3d);
+}
+
+.gold-text {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+
+/* 3D Effect for Buttons & Cards */
+.vibrant-3d-button {
+    background: var(--accent-gradient);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    transform: translateY(0);
+}
+
+.vibrant-3d-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+
+.hidden { display: none !important; }
+.opacity-0 { opacity: 0; }
+.page-transition { transition: all 0.5s ease; }

@@ -8,6 +8,7 @@
  */
 import * as UI from './modules/ui.js';
 import { initFirebaseSync } from './modules/data.js';
+import { initAuth, logout } from './modules/auth.js';
 
 // Global access for HTML onclick handlers
 window.app = {
@@ -19,19 +20,23 @@ window.app = {
     showShopFinance: UI.showShopFinance,
     openShopDetailByName: UI.openShopDetailByName,
     goBack: UI.goBack,
+    logout: logout,
     deleteLoan: (id) => { if(confirm("Confirm Deletion?")) { import('./modules/data.js').then(D => { D.db.deleteLoan(id); import('./modules/finance.js').then(F => F.initLoans()); }); } }
 };
 
 // Initialize Application
 window.addEventListener('DOMContentLoaded', () => {
-    // Initial render and profile sync
-    UI.initApp();
+    // Initialize Auth first
+    initAuth((user) => {
+        // This runs only after successful login
+        UI.initApp();
 
-    // Initialize Real-time Cloud Sync (World-Class connectivity)
-    initFirebaseSync(() => {
-        UI.updateProfileHeader();
-        UI.renderHome();
-        console.log('ABD Cloud Sync: Data Updated');
+        // Initialize Real-time Cloud Sync
+        initFirebaseSync(() => {
+            UI.updateProfileHeader();
+            UI.renderHome();
+            console.log('ABD Cloud Sync: Data Updated');
+        });
     });
 
     // Start Clock

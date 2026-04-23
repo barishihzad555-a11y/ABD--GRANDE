@@ -20,26 +20,59 @@ export function initSales() {
     const authBtn = document.getElementById('btn-add-sale');
     if (authBtn) {
         authBtn.onclick = () => {
+            const mode = document.getElementById('finance-mode').value; // 'sale' or 'expense'
             const shop = document.getElementById('sale-shop').value;
             const product = document.getElementById('sale-product').value;
             const price = parseFloat(document.getElementById('sale-price').value) || 0;
+            const image = document.getElementById('finance-proof-preview').src;
 
             if (!product || price <= 0) {
-                alert("Executive Error: Invalid Asset Data");
+                alert("Executive Error: Invalid Data");
                 return;
             }
 
-            const success = Data.db.addSale({
-                shop,
-                product,
-                amount: price,
-                profit: price * 0.15
-            });
+            let success;
+            if (mode === 'sale') {
+                success = Data.db.addSale({
+                    shop,
+                    product,
+                    amount: price,
+                    profit: price * 0.15,
+                    proof: image.startsWith('data:') ? image : null
+                });
+            } else {
+                success = Data.db.addExpense({
+                    shop,
+                    description: product,
+                    amount: price,
+                    proof: image.startsWith('data:') ? image : null
+                });
+            }
 
             if (success) {
                 updateSalesUI();
                 document.getElementById('sale-product').value = '';
                 document.getElementById('sale-price').value = '';
+                document.getElementById('finance-proof-preview').src = '';
+                document.getElementById('finance-proof-wrapper').classList.add('hidden');
+            }
+        };
+    }
+
+    // Image Upload Handling
+    const fileInput = document.getElementById('finance-proof-input');
+    if (fileInput) {
+        fileInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const preview = document.getElementById('finance-proof-preview');
+                    const wrapper = document.getElementById('finance-proof-wrapper');
+                    preview.src = event.target.result;
+                    wrapper.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
             }
         };
     }
@@ -52,18 +85,49 @@ export function initLoans() {
             const entity = document.getElementById('loan-entity').value;
             const type = document.getElementById('loan-type').value;
             const amount = parseFloat(document.getElementById('loan-amount').value) || 0;
+            const dueDate = document.getElementById('loan-due-date').value;
+            const proof = document.getElementById('loan-proof-preview').src;
 
             if (!entity || amount <= 0) {
                 alert("Invalid Loan Data");
                 return;
             }
 
-            Data.db.addLoan({ entity, type, amount, status: 'Active' });
+            Data.db.addLoan({
+                entity,
+                type,
+                amount,
+                dueDate,
+                status: 'Active',
+                proof: proof.startsWith('data:') ? proof : null
+            });
             updateLoansUI();
+
+            // Reset
             document.getElementById('loan-entity').value = '';
             document.getElementById('loan-amount').value = '';
+            document.getElementById('loan-proof-preview').src = '';
+            document.getElementById('loan-proof-wrapper').classList.add('hidden');
         };
     }
+
+    const loanFileInput = document.getElementById('loan-proof-input');
+    if (loanFileInput) {
+        loanFileInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const preview = document.getElementById('loan-proof-preview');
+                    const wrapper = document.getElementById('loan-proof-wrapper');
+                    preview.src = event.target.result;
+                    wrapper.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+    }
+
     updateLoansUI();
 }
 
@@ -72,18 +136,21 @@ function updateLoansUI() {
     if (!list) return;
 
     list.innerHTML = (Data.loansData || []).map(loan => `
-        <div class="flex justify-between items-center p-3 bg-black/20 rounded-xl border border-white/5 hover:border-[#D4AF37]/30 transition-all">
-            <div>
-                <h4 class="text-[10px] font-bold text-white uppercase">${loan.entity}</h4>
-                <p class="text-[7px] text-slate-500 uppercase tracking-widest mt-0.5">${loan.type}</p>
+        <div class="flex justify-between items-center p-3 bg-white/[0.03] rounded-xl border border-white/5 hover:border-[#D4AF37]/30 transition-all group">
+            <div class="flex items-center gap-3">
+                ${loan.proof ? `<div class="w-8 h-8 rounded bg-white/5 overflow-hidden border border-white/10" onclick="window.app.viewProof('${loan.proof}')"><img src="${loan.proof}" class="w-full h-full object-cover"></div>` : `<div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center border border-white/10"><i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-700"></i></div>`}
+                <div>
+                    <h4 class="text-[9px] font-bold text-white uppercase tracking-wider">${loan.entity}</h4>
+                    <p class="text-[7px] text-slate-500 uppercase tracking-widest mt-0.5">${loan.type} • ${loan.dueDate || 'No Due Date'}</p>
+                </div>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
                 <div class="text-right">
                     <p class="text-[10px] font-black ${loan.type === 'Receivable' ? 'text-emerald-400' : 'text-red-400'}">${parseFloat(loan.amount).toLocaleString()}</p>
-                    <span class="text-[6px] font-black uppercase px-2 py-0.5 rounded-full ${loan.status === 'Active' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-amber-500/10 text-amber-500'}">${loan.status}</span>
+                    <span class="text-[6px] font-black uppercase px-1.5 py-0.5 rounded ${loan.status === 'Active' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-amber-500/10 text-amber-500'}">${loan.status}</span>
                 </div>
-                <button onclick="window.app.deleteLoan('${loan.id}')" class="text-slate-600 hover:text-red-500 transition-colors">
-                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                <button onclick="window.app.deleteLoan('${loan.id}')" class="w-6 h-6 flex items-center justify-center rounded-lg bg-red-500/10 text-red-500/50 hover:text-red-500 transition-all opacity-0 group-hover:opacity-100">
+                    <i data-lucide="trash-2" class="w-3 h-3"></i>
                 </button>
             </div>
         </div>
@@ -110,16 +177,31 @@ function updateSalesUI() {
     const tableBody = document.getElementById('sales-table-body');
     if (!tableBody) return;
 
-    tableBody.innerHTML = (Data.salesRecords || []).map(r => `
+    const allRecords = [
+        ...Data.salesRecords.map(r => ({ ...r, type: 'SALE' })),
+        ...Data.expensesRecords.map(e => ({ ...e, type: 'EXPENSE', product: e.description }))
+    ].sort((a, b) => new Date(b.date + ' ' + b.time) - new Date(a.date + ' ' + a.time));
+
+    tableBody.innerHTML = allRecords.map(r => `
         <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors group">
-            <td class="p-3 text-[9px] font-bold text-slate-500 uppercase tracking-widest">#${r.id}</td>
             <td class="p-3">
-                <h4 class="text-[10px] font-bold text-white uppercase">${r.product}</h4>
-                <p class="text-[7px] text-slate-500 uppercase">${r.shop}</p>
+                <div class="flex items-center gap-2">
+                    <span class="text-[7px] font-black px-1.5 py-0.5 rounded ${r.type === 'SALE' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'}">${r.type}</span>
+                    <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">#${r.id}</span>
+                </div>
+            </td>
+            <td class="p-3">
+                <div class="flex items-center gap-2">
+                    ${r.proof ? `<div class="w-6 h-6 rounded bg-white/5 overflow-hidden border border-white/10" onclick="window.app.viewProof('${r.proof}')"><img src="${r.proof}" class="w-full h-full object-cover"></div>` : ''}
+                    <div>
+                        <h4 class="text-[10px] font-bold text-white uppercase">${r.product}</h4>
+                        <p class="text-[7px] text-slate-500 uppercase">${r.shop}</p>
+                    </div>
+                </div>
             </td>
             <td class="p-3 text-right">
                 <p class="text-[10px] font-black text-white">${r.amount.toLocaleString()}</p>
-                <span class="text-[7px] font-black text-emerald-500 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">+${r.profit.toLocaleString()}</span>
+                <span class="text-[7px] font-black ${r.type === 'SALE' ? 'text-emerald-500' : 'text-slate-500'} uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">${r.type === 'SALE' ? '+' + r.profit.toLocaleString() : r.date}</span>
             </td>
         </tr>
     `).join('');
@@ -137,9 +219,16 @@ export function getSalesPage() {
                 </button>
             </div>
             <div class="shrink-0 luxury-card p-4 space-y-4 border-[#D4AF37]/10 bg-[#D4AF37]/[0.02]">
-                <h3 class="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.3em] border-b border-white/5 pb-2 flex items-center gap-2">
-                    <i data-lucide="shield-check" class="w-3 h-3"></i> Secure Transaction Terminal
-                </h3>
+                <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                    <h3 class="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.3em] flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-3 h-3"></i> Secure Transaction Terminal
+                    </h3>
+                    <select id="finance-mode" class="bg-black/40 border border-[#D4AF37]/20 rounded px-2 py-0.5 text-[8px] font-black text-[#D4AF37] uppercase outline-none">
+                        <option value="sale">Record Sale</option>
+                        <option value="expense">Record Expense</option>
+                    </select>
+                </div>
+
                 <div class="grid grid-cols-2 gap-3">
                     <div class="space-y-1">
                         <label class="text-[7px] font-black text-slate-500 uppercase ml-1">Location Hub</label>
@@ -148,8 +237,8 @@ export function getSalesPage() {
                         </select>
                     </div>
                     <div class="space-y-1">
-                        <label class="text-[7px] font-black text-slate-500 uppercase ml-1">Asset Identity</label>
-                        <input type="text" id="sale-product" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-white focus:border-[#D4AF37]/50 outline-none" placeholder="Enter product name">
+                        <label class="text-[7px] font-black text-slate-500 uppercase ml-1">Asset Identity / Desc</label>
+                        <input type="text" id="sale-product" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-white focus:border-[#D4AF37]/50 outline-none" placeholder="Enter details">
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
@@ -157,11 +246,20 @@ export function getSalesPage() {
                         <label class="text-[7px] font-black text-slate-500 uppercase ml-1">Market Value</label>
                         <input type="number" id="sale-price" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-white focus:border-[#D4AF37]/50 outline-none" placeholder="0.00">
                     </div>
-                    <div class="flex items-end">
-                        <button id="btn-add-sale" class="w-full h-[34px] bg-gradient-to-r from-[#D4AF37] to-[#8A6D3B] text-black font-black text-[9px] uppercase tracking-widest rounded-lg shadow-lg active:scale-95 transition-all">
-                            Authorize & Log
+                    <div class="flex items-end gap-2">
+                        <input type="file" id="finance-proof-input" class="hidden" accept="image/*">
+                        <button onclick="document.getElementById('finance-proof-input').click()" class="flex-1 h-[34px] bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white transition-all">
+                            <i data-lucide="camera" class="w-4 h-4"></i>
+                        </button>
+                        <button id="btn-add-sale" class="flex-[2] h-[34px] bg-gradient-to-r from-[#D4AF37] to-[#8A6D3B] text-black font-black text-[9px] uppercase tracking-widest rounded-lg shadow-lg active:scale-95 transition-all">
+                            Authorize
                         </button>
                     </div>
+                </div>
+
+                <div id="finance-proof-wrapper" class="hidden flex items-center gap-3 p-2 bg-black/40 rounded-lg border border-white/5">
+                    <img id="finance-proof-preview" class="w-10 h-10 rounded object-cover border border-[#D4AF37]/30">
+                    <p class="text-[7px] font-bold text-emerald-500 uppercase tracking-widest">Image Attached (Securely Cached)</p>
                 </div>
             </div>
 
@@ -170,7 +268,7 @@ export function getSalesPage() {
                     <table class="w-full text-left">
                         <thead class="sticky top-0 bg-[#0A0A0A] z-10">
                             <tr class="border-b border-white/10">
-                                <th class="p-3 text-[8px] font-black text-slate-500 uppercase tracking-widest">Trace ID</th>
+                                <th class="p-3 text-[8px] font-black text-slate-500 uppercase tracking-widest">Type / ID</th>
                                 <th class="p-3 text-[8px] font-black text-slate-500 uppercase tracking-widest">Asset Details</th>
                                 <th class="p-3 text-[8px] font-black text-slate-500 uppercase tracking-widest text-right">Yield Status</th>
                             </tr>
@@ -202,8 +300,8 @@ export function getLoansPage() {
                     <div class="space-y-1">
                         <label class="text-[7px] font-black text-slate-500 uppercase ml-1">Portfolio Type</label>
                         <select id="loan-type" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-white focus:border-[#D4AF37]/50 outline-none">
-                            <option value="Receivable">Receivable (In)</option>
-                            <option value="Payable">Payable (Out)</option>
+                            <option value="Receivable">Receivable (Lent)</option>
+                            <option value="Payable">Payable (Borrowed)</option>
                         </select>
                     </div>
                 </div>
@@ -212,11 +310,24 @@ export function getLoansPage() {
                         <label class="text-[7px] font-black text-slate-500 uppercase ml-1">Capital Amount</label>
                         <input type="number" id="loan-amount" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-white focus:border-[#D4AF37]/50 outline-none" placeholder="0.00">
                     </div>
-                    <div class="flex items-end">
-                        <button id="btn-add-loan" class="w-full h-[34px] bg-gradient-to-r from-[#D4AF37] to-[#8A6D3B] text-black font-black text-[9px] uppercase tracking-widest rounded-lg shadow-lg active:scale-95 transition-all">
-                            Register Portfolio
-                        </button>
+                    <div class="space-y-1">
+                        <label class="text-[7px] font-black text-slate-500 uppercase ml-1">Due Date</label>
+                        <input type="date" id="loan-due-date" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-white focus:border-[#D4AF37]/50 outline-none">
                     </div>
+                </div>
+                <div class="flex gap-2">
+                    <input type="file" id="loan-proof-input" class="hidden" accept="image/*">
+                    <button onclick="document.getElementById('loan-proof-input').click()" class="w-12 h-[34px] bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-slate-400 hover:text-white transition-all">
+                        <i data-lucide="camera" class="w-4 h-4"></i>
+                    </button>
+                    <button id="btn-add-loan" class="flex-1 h-[34px] bg-gradient-to-r from-[#D4AF37] to-[#8A6D3B] text-black font-black text-[9px] uppercase tracking-widest rounded-lg shadow-lg active:scale-95 transition-all">
+                        Register Portfolio
+                    </button>
+                </div>
+
+                <div id="loan-proof-wrapper" class="hidden flex items-center gap-3 p-2 bg-black/40 rounded-lg border border-white/5">
+                    <img id="loan-proof-preview" class="w-10 h-10 rounded object-cover border border-[#D4AF37]/30">
+                    <p class="text-[7px] font-bold text-emerald-500 uppercase tracking-widest">Cheque/Bill Attached</p>
                 </div>
             </div>
 

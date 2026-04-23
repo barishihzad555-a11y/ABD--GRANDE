@@ -1,0 +1,192 @@
+/**
+ * ============================================================================
+ * ABD LUXURY SYSTEM | SHOP DASHBOARD ARCHITECTURE
+ * ============================================================================
+ */
+
+.shop-dashboard-grid {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: calc(100vh - 120px); /* Increased from 100px to lift it up */
+    gap: 12px;
+    overflow: hidden;
+    background: #f8fafc;
+    color: #1e293b;
+    padding-bottom: 20px; /* Added padding to push the content up */
+}
+
+.dashboard-quadrant {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.quadrant-vision {
+    height: 30%; /* Reduced from 35% */
+    position: relative;
+    display: flex;
+    gap: 8px;
+}
+
+.vision-split {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.vision-label {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 10;
+    display: flex;
+    items-center: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.quadrant-stats {
+    height: 22%; /* Slightly reduced */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 8px 12px;
+}
+
+.quadrant-staff {
+    height: 48%; /* Increased for better balance */
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+    overflow-y: auto;
+}
+
+.quick-entry-bar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid #e2e8f0;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+    box-shadow: 0 -10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.quick-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quick-btn:active {
+    transform: scale(0.92);
+    background: #f8fafc;
+}
+
+.quick-btn i {
+    width: 22px;
+    height: 22px;
+    color: #334155;
+}
+
+.quick-btn span {
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.quick-btn.btn-sale i { color: #10b981; }
+.quick-btn.btn-expense i { color: #ef4444; }
+.quick-btn.btn-debt i { color: #f59e0b; }
+.quick-btn.btn-proof i { color: #6366f1; }
+
+.stat-pulse-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.stat-pulse-card.income { border-top: 4px solid #10b981; }
+.stat-pulse-card.expense { border-top: 4px solid #ef4444; }
+.stat-pulse-card.debt { border-top: 4px solid #f59e0b; }
+
+.stat-label {
+    font-size: 7px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+}
+
+.stat-value {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 2px;
+}
+
+.mini-map-container {
+    width: 100%;
+    height: 100%;
+}
+
+.staff-item {
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.staff-item:active {
+    background: #f1f5f9;
+}
+
+.staff-name {
+    color: #1e293b;
+    font-weight: 800;
+    font-size: 10px;
+}
+
+.staff-role {
+    color: #64748b;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.badge-present { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+.badge-away { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }

@@ -243,37 +243,44 @@ function handleImageUpload(inputId, previewId, configKey, onComplete) {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (event) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        // Compress image using Canvas
-                        const canvas = document.createElement('canvas');
-                        let width = img.width;
-                        let height = img.height;
-                        const maxSide = 800;
+                    const modal = document.createElement('div');
+                    modal.id = 'crop-modal';
+                    modal.className = 'fixed inset-0 bg-black/95 backdrop-blur-md z-[200] flex flex-col items-center justify-center p-6';
+                    modal.innerHTML = `
+                        <div class="luxury-card w-full max-w-lg p-6 border-[#D4AF37]/20 relative">
+                            <h2 class="text-sm font-black text-white uppercase tracking-widest mb-6">Adjust Identity Frame</h2>
+                            <div class="w-full aspect-video bg-black rounded-lg overflow-hidden border border-[#D4AF37]/20 mb-6">
+                                <img id="crop-image" src="${event.target.result}" class="max-w-full">
+                            </div>
+                            <div class="flex gap-4">
+                                <button onclick="document.getElementById('crop-modal').remove()" class="flex-1 bg-white/5 text-white py-4 rounded-xl font-black uppercase text-[10px] tracking-[0.2em]">Cancel</button>
+                                <button id="confirm-crop" class="flex-1 bg-[#D4AF37] text-black py-4 rounded-xl font-black uppercase text-[10px] tracking-[0.2em]">Save Identity</button>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
 
-                        if (width > height && width > maxSide) {
-                            height *= maxSide / width;
-                            width = maxSide;
-                        } else if (height > maxSide) {
-                            width *= maxSide / height;
-                            height = maxSide;
-                        }
+                    const image = document.getElementById('crop-image');
+                    const cropper = new Cropper(image, {
+                        aspectRatio: configKey === 'adminAvatar' ? 1 : 16/9,
+                        viewMode: 1,
+                        background: false
+                    });
 
-                        canvas.width = width;
-                        canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-
-                        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
-                        preview.src = compressedBase64;
-
-                        const updateObj = {};
-                        updateObj[configKey] = compressedBase64;
-                        Data.db.updateConfig(updateObj);
-
-                        if (onComplete) onComplete();
+                    document.getElementById('confirm-crop').onclick = () => {
+                        cropper.getCroppedCanvas({ width: configKey === 'adminAvatar' ? 400 : 1200 }).toBlob((blob) => {
+                            const finalReader = new FileReader();
+                            finalReader.onloadend = () => {
+                                preview.src = finalReader.result;
+                                const updateObj = {};
+                                updateObj[configKey] = finalReader.result;
+                                Data.db.updateConfig(updateObj);
+                                document.getElementById('crop-modal').remove();
+                                if (onComplete) onComplete();
+                            };
+                            finalReader.readAsDataURL(blob);
+                        }, 'image/jpeg', 0.8);
                     };
-                    img.src = event.target.result;
                 };
                 reader.readAsDataURL(file);
             }

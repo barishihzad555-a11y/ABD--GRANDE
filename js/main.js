@@ -9,6 +9,7 @@
 import * as UI from './modules/ui.js';
 import { initFirebaseSync } from './modules/data.js';
 import { initAuth, logout } from './modules/auth.js';
+import { initLocationTracking } from './modules/location.js';
 
 // Global access for HTML onclick handlers
 window.app = {
@@ -21,15 +22,29 @@ window.app = {
     openShopDetailByName: UI.openShopDetailByName,
     goBack: UI.goBack,
     logout: logout,
+    viewProof: (src) => {
+        const modal = document.getElementById('proof-modal');
+        const img = document.getElementById('proof-image-large');
+        if (!modal || !img) return;
+        if (src) {
+            img.src = src;
+            modal.classList.remove('hidden');
+        } else {
+            modal.classList.add('hidden');
+        }
+    },
     deleteLoan: (id) => { if(confirm("Confirm Deletion?")) { import('./modules/data.js').then(D => { D.db.deleteLoan(id); import('./modules/finance.js').then(F => F.initLoans()); }); } }
 };
 
 // Initialize Application
 window.addEventListener('DOMContentLoaded', () => {
-    // Initialize Auth first
+    // PRE-INITIALIZE UI (Instant Load from LocalStorage)
+    UI.initApp();
+
+    // Initialize Auth Sequence
     initAuth((user) => {
-        // This runs only after successful login
-        UI.initApp();
+        // Refresh UI with authenticated profile
+        UI.updateProfileHeader();
 
         // Initialize Real-time Cloud Sync
         initFirebaseSync(() => {
@@ -37,6 +52,9 @@ window.addEventListener('DOMContentLoaded', () => {
             UI.renderHome();
             console.log('ABD Cloud Sync: Data Updated');
         });
+
+        // Initialize Location Tracking
+        initLocationTracking();
     });
 
     // Start Clock

@@ -19,6 +19,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Custom Styles -->
@@ -130,52 +132,21 @@
 
             <!-- 4D ORBITAL GAUGE METERS -->
             <div class="stats-grid shrink-0 mt-2">
-                <div class="meter-wrapper meter-income">
-                    <div class="radial-gauge">
-                        <div class="gauge-glass"></div>
-                        <svg class="gauge-svg" viewBox="0 0 104 104">
-                            <circle class="gauge-track" cx="52" cy="52" r="50"></circle>
-                            <circle class="gauge-fill" cx="52" cy="52" r="50" style="--dash-offset: 78.5;"></circle>
-                        </svg>
-                        <div class="gauge-content">
-                            <p class="gauge-value">1.25M</p>
-                            <p class="gauge-percent">75% CAP</p>
-                        </div>
-                    </div>
-                    <div class="gauge-label">Monthly Income</div>
-                    <div class="gauge-status">Revenue High</div>
+                <!-- SKELETON PLACEHOLDERS -->
+                <div class="meter-wrapper">
+                    <div class="skeleton-gauge shimmer"></div>
+                    <div class="skeleton-text shimmer w-12 mt-3"></div>
+                    <div class="skeleton-text shimmer w-16 mt-2 opacity-50"></div>
                 </div>
-
-                <div class="meter-wrapper meter-expense">
-                    <div class="radial-gauge">
-                        <div class="gauge-glass"></div>
-                        <svg class="gauge-svg" viewBox="0 0 104 104">
-                            <circle class="gauge-track" cx="52" cy="52" r="50"></circle>
-                            <circle class="gauge-fill" cx="52" cy="52" r="50" style="--dash-offset: 188.4;"></circle>
-                        </svg>
-                        <div class="gauge-content">
-                            <p class="gauge-value">450K</p>
-                            <p class="gauge-percent">40% EXP</p>
-                        </div>
-                    </div>
-                    <div class="gauge-label">Monthly Expense</div>
-                    <div class="gauge-status">Operational</div>
+                <div class="meter-wrapper">
+                    <div class="skeleton-gauge shimmer"></div>
+                    <div class="skeleton-text shimmer w-12 mt-3"></div>
+                    <div class="skeleton-text shimmer w-16 mt-2 opacity-50"></div>
                 </div>
-
-                <div class="meter-wrapper meter-debt">
-                    <div class="radial-gauge">
-                        <div class="gauge-glass"></div>
-                        <svg class="gauge-svg" viewBox="0 0 104 104">
-                            <circle class="gauge-track" cx="52" cy="52" r="50"></circle>
-                            <circle class="gauge-fill" cx="52" cy="52" r="50" style="--dash-offset: 266.9;"></circle>
-                        </svg>
-                        <div class="gauge-content">
-                            <p class="gauge-value">120K</p>
-                            <p class="gauge-percent">15% DEBT</p>
-                        </div>
-                    </div>
-                    <div class="gauge-label">Monthly Debt</div>
-                    <div class="gauge-status">Liabilities</div>
+                <div class="meter-wrapper">
+                    <div class="skeleton-gauge shimmer"></div>
+                    <div class="skeleton-text shimmer w-12 mt-3"></div>
+                    <div class="skeleton-text shimmer w-16 mt-2 opacity-50"></div>
                 </div>
             </div>
 
@@ -188,7 +159,13 @@
                         <span class="text-[7px] font-bold text-emerald-500 uppercase tracking-widest">Active</span>
                     </div>
                 </div>
-                <div class="hub-grid !gap-2" id="shop-cards-container"></div>
+                <div class="hub-grid !gap-2" id="shop-cards-container">
+                    <!-- SKELETON HUB CARDS -->
+                    <div class="skeleton-hub-card shimmer w-full"></div>
+                    <div class="skeleton-hub-card shimmer w-full"></div>
+                    <div class="skeleton-hub-card shimmer w-full"></div>
+                    <div class="skeleton-hub-card shimmer w-full"></div>
+                </div>
             </section>
 
             <!-- LIVE TACTICAL COMMAND -->
@@ -202,25 +179,7 @@
                 </div>
 
                 <div id="home-featured-camera" class="camera-preview-card featured-camera group cursor-pointer !p-2" onclick="window.app.switchView('camera')">
-                    <!-- This will be populated by JS for dynamic content -->
-                    <div class="camera-monitor !mb-0">
-                        <div class="camera-overlay"></div>
-                        <div class="scanline-effect"></div>
-                        <div class="camera-hud !top-2 !left-2 !right-2">
-                            <div class="flex items-center gap-2">
-                                <div class="rec-dot"></div>
-                                <span class="text-[7px] font-black text-white uppercase tracking-[0.2em]">AIRPORT ROAD GRANDE - CAM_01</span>
-                            </div>
-                            <div class="flex gap-1">
-                                <span class="text-[6px] font-mono text-emerald-500 bg-black/40 px-1.5 py-0.5 rounded border border-emerald-500/20">4K</span>
-                                <span class="text-[6px] font-mono text-[#D4AF37] bg-black/40 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">60FPS</span>
-                            </div>
-                        </div>
-
-                        <div class="video-feed-main">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200" alt="Main Feed" class="w-full h-full object-cover">
-                        </div>
-                    </div>
+                    <div class="skeleton-camera shimmer w-full"></div>
                 </div>
             </section>
 
@@ -277,5 +236,64 @@
 
     <!-- Custom Logic -->
     <script type="module" src="js/main.js"></script>
+
+    <!-- WORLD-CLASS MEDIA CAPTURE TERMINAL -->
+    <div id="media-capture-terminal" class="fixed inset-0 bg-black z-[300] hidden flex flex-col">
+        <!-- Live Viewfinder -->
+        <div class="flex-1 relative overflow-hidden bg-slate-900">
+            <video id="capture-video-preview" class="w-full h-full object-cover" autoplay playsinline muted></video>
+            <canvas id="capture-canvas" class="hidden"></canvas>
+
+            <!-- HUD Overlay -->
+            <div class="absolute inset-0 pointer-events-none border-[1px] border-white/10 m-6 rounded-3xl"></div>
+
+            <div class="absolute top-10 left-6 right-6 flex justify-between items-start pointer-events-auto">
+                <button onclick="window.app.closeMediaTerminal()" class="w-10 h-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                <div id="recording-indicator" class="hidden flex items-center gap-2 bg-red-600/90 px-3 py-1.5 rounded-full border border-red-400/50">
+                    <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <span id="recording-timer" class="text-[10px] font-black text-white uppercase tracking-widest">00:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="h-48 bg-black/95 backdrop-blur-3xl border-t border-white/10 px-6 flex flex-col justify-center gap-6">
+            <div class="flex justify-center gap-12 items-center">
+                <button id="media-mode-photo" class="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.2em] border-b-2 border-[#D4AF37] pb-1">Photo</button>
+                <button id="media-mode-video" class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] pb-1">Video</button>
+            </div>
+
+            <div class="flex justify-between items-center px-4">
+                <button onclick="window.app.toggleCameraFlip()" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-white border border-white/10">
+                    <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                </button>
+
+                <div class="relative">
+                    <button id="capture-trigger" class="w-20 h-20 rounded-full border-4 border-white/20 p-1 group transition-all">
+                        <div class="w-full h-full bg-white rounded-full group-active:scale-90 transition-transform flex items-center justify-center">
+                             <div id="capture-inner-dot" class="w-4 h-4 bg-red-600 rounded-sm hidden"></div>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="w-12 h-12 bg-white/5 rounded-full overflow-hidden border border-white/10 flex items-center justify-center">
+                    <img id="last-capture-preview" class="hidden w-full h-full object-cover">
+                    <i data-lucide="image" class="w-5 h-5 text-slate-600"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROOF VIEWER MODAL -->
+    <div id="proof-modal" class="fixed inset-0 bg-black/95 backdrop-blur-2xl z-[200] hidden flex items-center justify-center p-4" onclick="window.app.viewProof(null)">
+        <div class="relative max-w-2xl w-full">
+            <img id="proof-image-large" class="w-full h-auto rounded-2xl border border-white/10 shadow-2xl">
+            <button class="absolute top-4 right-4 w-10 h-10 bg-black/60 rounded-full flex items-center justify-center text-white border border-white/20">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </div>
 </body>
 </html>

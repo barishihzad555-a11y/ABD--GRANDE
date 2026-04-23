@@ -112,3 +112,66 @@ body {
 .hidden { display: none !important; }
 .opacity-0 { opacity: 0; }
 .page-transition { transition: all 0.5s ease; }
+
+/* WORLD-CLASS SKELETON LOADERS */
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.03) 25%,
+        rgba(255, 255, 255, 0.08) 37%,
+        rgba(255, 255, 255, 0.03) 63%
+    );
+    background-size: 400% 100%;
+    animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes skeleton-shimmer {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.skeleton-gauge {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #111418 0%, #050505 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.skeleton-hub-card {
+    height: 60px;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skeleton-camera {
+    height: 180px;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skeleton-text {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+/* Ensure fixed layout containers */
+#shop-cards-container {
+    min-height: 140px;
+}
+
+.stats-grid {
+    min-height: 150px;
+}
+
+#home-featured-camera {
+    min-height: 200px;
+}

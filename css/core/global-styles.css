@@ -4,17 +4,23 @@
 */
 
 :root {
-    /* DEFAULT DARK THEME (Current) */
-    --bg-app: #0A0C10;
-    --text-main: #F8FAFC;
-    --text-dim: #64748B;
-    --accent: #D4AF37;
-    --accent-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #D4AF37 100%);
-    --card-bg: rgba(17, 20, 28, 0.85);
-    --card-border: rgba(212, 175, 55, 0.1);
-    --nav-bg: rgba(0, 0, 0, 0.6);
-    --shadow-3d: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    --glass-blur: blur(25px);
+    /* WORLD-CLASS PROFESSIONAL LIGHT PALETTE (Executive Multi-Tone) */
+    --bg-app: #F0F2F5; /* Soft Executive Gray */
+    --text-main: #1A1F2B; /* Deep Navy Charcoal - Maximum Readability */
+    --text-dim: #4B5563; /* Slate Gray for secondary text */
+    --accent: #B8964B; /* Sophisticated Bronze Gold */
+    --accent-gradient: linear-gradient(135deg, #B8964B 0%, #D4AF37 50%, #B8964B 100%);
+
+    /* Layered Color System - Professional Surfaces */
+    --card-bg: #FFFFFF; /* Pure White for primary cards */
+    --surface-light: #F8FAFC; /* Off-white for secondary surfaces */
+    --surface-muted: #E5E7EB; /* Muted gray for subtle backgrounds */
+    --surface-dark: #1A1F2B; /* Deep surface for high-contrast headers */
+
+    --card-border: #D1D5DB; /* Defined borders for maximum visibility */
+    --nav-bg: rgba(248, 250, 252, 0.98); /* Almost opaque for nav clarity */
+    --shadow-3d: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    --glass-blur: blur(20px);
 }
 
 /* LIGHT & VIBRANT THEME - WORLD CLASS DESIGN */
@@ -113,13 +119,13 @@ body {
 .opacity-0 { opacity: 0; }
 .page-transition { transition: all 0.5s ease; }
 
-/* WORLD-CLASS SKELETON LOADERS */
+/* WORLD-CLASS SKELETON LOADERS (Optimized for Light) */
 .shimmer {
     background: linear-gradient(
         90deg,
-        rgba(255, 255, 255, 0.03) 25%,
-        rgba(255, 255, 255, 0.08) 37%,
-        rgba(255, 255, 255, 0.03) 63%
+        rgba(0, 0, 0, 0.03) 25%,
+        rgba(0, 0, 0, 0.06) 37%,
+        rgba(0, 0, 0, 0.03) 63%
     );
     background-size: 400% 100%;
     animation: skeleton-shimmer 1.4s ease infinite;
@@ -134,32 +140,32 @@ body {
     width: 85px;
     height: 85px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, #111418 0%, #050505 100%);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #F1F5F9;
+    border: 1px solid #E2E8F0;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .skeleton-hub-card {
     height: 60px;
     border-radius: 1.25rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
 }
 
 .skeleton-camera {
     height: 180px;
     border-radius: 1.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
 }
 
 .skeleton-text {
     height: 8px;
-    background: rgba(255, 255, 255, 0.03);
+    background: #E2E8F0;
     border-radius: 4px;
 }
 

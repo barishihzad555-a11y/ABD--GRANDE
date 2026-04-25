@@ -25,12 +25,12 @@
     width: 85px;
     height: 85px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, #111418 0%, #050505 100%);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    background: #FFFFFF;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1.5px solid #D1D5DB;
 }
 
 /* Glowing Arc */
@@ -45,7 +45,7 @@
 
 .gauge-track {
     fill: none;
-    stroke: rgba(255,255,255,0.05);
+    stroke: #E5E7EB; /* Distinct track color */
     stroke-width: 4;
 }
 
@@ -57,7 +57,6 @@
     stroke-dasharray: 282.7; /* 2 * PI * 45 */
     stroke-dashoffset: var(--dash-offset);
     transition: stroke-dashoffset 1.5s ease;
-    filter: drop-shadow(0 0 5px var(--meter-color));
 }
 
 /* Content Centering */
@@ -72,7 +71,7 @@
 .gauge-value {
     font-size: 15px;
     font-weight: 900;
-    color: #FFFFFF;
+    color: #0F172A;
     line-height: 1;
 }
 

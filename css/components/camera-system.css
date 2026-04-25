@@ -1,22 +1,23 @@
 /* ABD LUXURY | CAMERA COMMAND SYSTEM */
 
 .surveillance-panel {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #F8FAFC;
+    border: 1.5px solid #D1D5DB;
     border-radius: 24px;
     padding: 20px;
     position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .camera-preview-card {
-    background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(15, 15, 15, 0.98));
-    border: 1px solid rgba(212, 175, 55, 0.1);
+    background: #FFFFFF;
+    border: 1.5px solid #D1D5DB;
     border-radius: 20px;
     padding: 12px;
     position: relative;
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
 .camera-preview-card::before {
@@ -36,7 +37,7 @@
 .camera-monitor {
     width: 100%;
     aspect-ratio: 16/9;
-    background: #000;
+    background: #0F172A; /* Deep navy instead of pure black for better integration */
     border-radius: 12px;
     position: relative;
     overflow: hidden;
@@ -114,7 +115,7 @@
 }
 
 .cam-meta h4 {
-    color: #fff;
+    color: #0F172A;
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
@@ -133,7 +134,7 @@
 /* Featured Camera (Home Page Large View) */
 .featured-camera {
     grid-column: span 2;
-    background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.95));
+    background: #FFFFFF;
 }
 
 .featured-camera .camera-monitor {

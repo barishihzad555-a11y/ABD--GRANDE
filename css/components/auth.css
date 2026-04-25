@@ -7,7 +7,7 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: #0A0C10;
+    background: #F8FAFC;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,14 +28,14 @@
     position: relative;
     width: 100%;
     max-width: 400px;
-    background: rgba(17, 20, 28, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(212, 175, 55, 0.1);
+    border: 1px solid #E2E8F0;
     border-radius: 2.5rem;
     padding: 3rem 2rem;
     text-align: center;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
     transform: translateY(0);
     animation: auth-fade-in 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -70,7 +70,7 @@
     gap: 12px;
     margin-top: 2rem;
     transition: all 0.3s ease;
-    border: none;
+    border: 1px solid #E2E8F0;
     cursor: pointer;
     font-size: 0.9rem;
     letter-spacing: 0.02em;

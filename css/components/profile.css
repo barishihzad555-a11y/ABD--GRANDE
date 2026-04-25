@@ -12,20 +12,24 @@
     padding: 0.25rem;
     border-radius: 1rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #FFFFFF;
+    border: 1px solid #D1D5DB;
 }
 
 .executive-profile:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: #F9FAFB;
+    border-color: #9CA3AF;
 }
 
 .profile-info {
     flex-direction: column;
+    display: flex;
 }
 
 .profile-name {
     font-size: 0.75rem;
     font-weight: 800;
-    color: white;
+    color: #1A1F2B;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -33,10 +37,10 @@
 .profile-role {
     font-size: 0.6rem;
     font-weight: 700;
-    color: #D4AF37;
+    color: #B8964B;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .avatar-container {
@@ -50,8 +54,8 @@
     height: 100%;
     border-radius: 0.75rem;
     overflow: hidden;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    background: #111;
+    border: 1px solid #D1D5DB;
+    background: #F3F4F6;
 }
 
 .status-indicator {
@@ -61,7 +65,8 @@
     width: 10px;
     height: 10px;
     background: #10b981;
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
+

@@ -14,11 +14,10 @@
 .hub-item {
     position: relative;
     height: 55px; /* Height reduced to half */
-    background: linear-gradient(135deg, rgba(30, 35, 45, 0.9) 0%, rgba(10, 12, 16, 0.98) 100%);
+    background: #F8FAFC; /* Secondary light color */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1.5px solid #D1D5DB; /* Stronger border for clarity */
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -27,6 +26,7 @@
     overflow: hidden;
     transition: all 0.3s ease;
     padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .hub-title {
@@ -42,7 +42,7 @@
 .hub-value {
     font-size: 11px;
     font-weight: 900;
-    background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%);
+    background: linear-gradient(135deg, #0F172A 0%, #A68B5B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;

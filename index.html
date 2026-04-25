@@ -12,7 +12,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ABD Luxury | Global Enterprise Command</title>
 
     <!-- External Libraries -->
@@ -28,7 +28,9 @@
     <link rel="stylesheet" href="css/components/hub-buttons.css">
     <link rel="stylesheet" href="css/components/stats-meters.css">
     <link rel="stylesheet" href="css/components/camera-system.css">
-    <link rel="stylesheet" href="css/components/profile.css">
+    <link rel="stylesheet" href="css/components/profile-header.css">
+    <link rel="stylesheet" href="css/components/shop-dashboard.css">
+    <link rel="stylesheet" href="css/components/executive-actions.css">
     <link rel="stylesheet" href="css/components/auth.css">
 
     <!-- Firebase SDK Preload (World-Class Performance) -->
@@ -41,10 +43,10 @@
         <div class="auth-background"></div>
         <div class="auth-card">
             <div class="auth-logo">
-                <i data-lucide="shield-check" class="w-10 h-10 text-black"></i>
+                <i data-lucide="shield-check" class="w-10 h-10 text-white"></i>
             </div>
             <h2 class="text-xl font-bold gold-text tracking-[0.2em] uppercase mb-1">Executive Access</h2>
-            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-[0.3em] mb-8">ABD Luxury Global Command</p>
+            <p class="text-[9px] text-slate-500 font-bold uppercase tracking-[0.3em] mb-8">ABD Luxury Global Command</p>
 
             <button id="google-login-btn" class="google-btn">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" height="18">
@@ -52,7 +54,7 @@
             </button>
 
             <div class="auth-loading mt-6">
-                <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+                <div class="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
                     <div class="h-full shimmer w-1/2"></div>
                 </div>
                 <p class="text-[7px] text-slate-500 font-bold uppercase tracking-widest mt-2">Authenticating Profile...</p>
@@ -64,7 +66,7 @@
 
     <div class="app-container">
         <!-- GLOBAL NAVIGATION -->
-        <nav class="fixed bottom-0 left-0 right-0 bg-black/60 backdrop-blur-3xl border-t border-white/5 px-6 pb-10 pt-4 flex items-center justify-around z-50 md:hidden">
+        <nav class="fixed bottom-0 left-0 right-0 bg-[#F1F5F9]/90 backdrop-blur-3xl border-t-2 border-[#CBD5E1] px-6 pb-10 pt-4 flex items-center justify-around z-50 md:hidden">
             <button onclick="window.app.switchView('home')" class="nav-item active flex flex-col items-center gap-1" id="nav-home">
                 <i data-lucide="layout-grid" class="w-6 h-6"></i>
                 <span class="text-[9px] font-extrabold uppercase tracking-widest">Empire</span>
@@ -122,7 +124,7 @@
                                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200" alt="Profile" class="w-full h-full object-cover">
                             </div>
                             <div class="status-indicator"></div>
-                            <div id="admin-avatar-verified" class="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full border border-black items-center justify-center hidden">
+                            <div id="admin-avatar-verified" class="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full border border-white items-center justify-center hidden">
                                 <i data-lucide="check" class="w-2.5 h-2.5 text-white"></i>
                             </div>
                         </div>
@@ -220,11 +222,11 @@
         <div id="view-page" class="page-transition hidden opacity-0 translate-y-10 min-h-screen flex flex-col gap-2 pb-20 md:pb-0">
             <header class="flex justify-between items-center shrink-0 mb-1 px-1">
                 <div class="flex items-center gap-3">
-                    <button onclick="window.app.goBack()" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                        <i data-lucide="chevron-left" class="w-5 h-5 text-[#D4AF37]"></i>
+                    <button onclick="window.app.goBack()" class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center">
+                        <i data-lucide="chevron-left" class="w-5 h-5 text-[#A68B5B]"></i>
                     </button>
                     <div>
-                        <h1 id="page-title" class="text-sm font-bold tracking-[0.1em] text-white uppercase">Page Title</h1>
+                        <h1 id="page-title" class="text-sm font-bold tracking-[0.1em] text-slate-900 uppercase">Page Title</h1>
                         <p id="page-subtitle" class="text-[7px] text-slate-500 font-black uppercase tracking-[0.2em]">Module Description</p>
                     </div>
                 </div>

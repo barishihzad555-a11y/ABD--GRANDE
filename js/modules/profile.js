@@ -10,20 +10,20 @@ export function getProfilePageHTML(config) {
     const role = config.adminRole || 'Executive Owner';
 
     return `
-        <div class="h-full flex flex-col bg-[#050505] overflow-hidden animate-fade-in font-['Plus_Jakarta_Sans']">
+        <div class="h-full flex flex-col bg-slate-50 overflow-hidden animate-fade-in font-['Plus_Jakarta_Sans']">
             <!-- LUXURY HEADER & COVER -->
             <div class="shrink-0 relative h-56 group">
                 <img id="profile-cover-preview" src="${config.adminCover || 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200'}"
-                     class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-all duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent"></div>
+                     class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-50/20 to-transparent"></div>
 
-                <label for="profile-cover-input" class="absolute top-6 right-6 p-3 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl cursor-pointer hover:bg-[#D4AF37]/20 transition-all shadow-2xl group/btn">
-                    <i data-lucide="camera" class="w-4 h-4 text-[#D4AF37] group-hover/btn:scale-110 transition-transform"></i>
+                <label for="profile-cover-input" class="absolute top-6 right-6 p-3 bg-white/60 backdrop-blur-xl border border-slate-200 rounded-2xl cursor-pointer hover:bg-[#B8964B]/20 transition-all shadow-xl group/btn">
+                    <i data-lucide="camera" class="w-4 h-4 text-[#B8964B] group-hover/btn:scale-110 transition-transform"></i>
                     <input type="file" id="profile-cover-input" class="hidden" accept="image/*">
                 </label>
 
-                <button onclick="window.app.goBack()" class="absolute top-6 left-6 w-12 h-12 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-[#D4AF37]/20 transition-all group/back">
-                    <i data-lucide="chevron-left" class="w-6 h-6 text-[#D4AF37] group-hover/back:-translate-x-1 transition-transform"></i>
+                <button onclick="window.app.goBack()" class="absolute top-6 left-6 w-12 h-12 rounded-2xl bg-white/60 backdrop-blur-xl border border-slate-200 flex items-center justify-center hover:bg-[#B8964B]/20 transition-all group/back">
+                    <i data-lucide="chevron-left" class="w-6 h-6 text-[#B8964B] group-hover/back:-translate-x-1 transition-transform"></i>
                 </button>
             </div>
 
@@ -31,23 +31,23 @@ export function getProfilePageHTML(config) {
             <div class="shrink-0 px-6 -mt-20 relative z-10">
                 <div class="flex flex-col items-center">
                     <div class="relative group">
-                        <div class="w-36 h-36 rounded-[2.8rem] overflow-hidden border-4 border-[#050505] p-1 bg-gradient-to-br from-[#D4AF37] via-[#FFD700] to-[#8A6D3B] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-                            <img id="profile-avatar-preview" src="${config.adminAvatar}" class="w-full h-full object-cover rounded-[2.3rem] bg-black" alt="Profile">
+                        <div class="w-36 h-36 rounded-[2.8rem] overflow-hidden border-4 border-white p-1 bg-gradient-to-br from-[#B8964B] via-[#D4AF37] to-[#B8964B] shadow-2xl">
+                            <img id="profile-avatar-preview" src="${config.adminAvatar}" class="w-full h-full object-cover rounded-[2.3rem] bg-slate-100" alt="Profile">
                         </div>
-                        <label for="profile-avatar-input" class="absolute bottom-1 right-1 w-11 h-11 bg-[#D4AF37] rounded-2xl flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition-all shadow-xl border-4 border-[#050505]">
-                            <i data-lucide="edit-3" class="w-5 h-5 text-black"></i>
+                        <label for="profile-avatar-input" class="absolute bottom-1 right-1 w-11 h-11 bg-[#B8964B] rounded-2xl flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition-all shadow-xl border-4 border-white">
+                            <i data-lucide="edit-3" class="w-5 h-5 text-white"></i>
                             <input type="file" id="profile-avatar-input" class="hidden" accept="image/*">
                         </label>
                     </div>
 
                     <div class="text-center mt-6">
                         <div class="flex items-center justify-center gap-2 mb-2">
-                            <h2 id="display-name-live" class="text-3xl font-black text-white tracking-tight uppercase drop-shadow-lg">${config.adminName}</h2>
-                            ${config.isVerified ? `<i data-lucide="badge-check" class="w-7 h-7 text-blue-400 fill-blue-400/20"></i>` : ''}
+                            <h2 id="display-name-live" class="text-3xl font-black text-slate-900 tracking-tight uppercase drop-shadow-sm">${config.adminName}</h2>
+                            ${config.isVerified ? `<i data-lucide="badge-check" class="w-7 h-7 text-blue-500 fill-blue-500/10"></i>` : ''}
                         </div>
-                        <div class="inline-flex items-center gap-2 px-5 py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-full">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse"></span>
-                            <span class="text-[10px] font-black text-[#D4AF37] uppercase tracking-[0.3em]">${role}</span>
+                        <div class="inline-flex items-center gap-2 px-5 py-2 bg-[#B8964B]/10 border border-[#B8964B]/20 rounded-full">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#B8964B] animate-pulse"></span>
+                            <span class="text-[10px] font-black text-[#B8964B] uppercase tracking-[0.3em]">${role}</span>
                         </div>
                     </div>
                 </div>
@@ -58,79 +58,79 @@ export function getProfilePageHTML(config) {
                 <section class="space-y-6">
                     <div class="flex items-center justify-between px-1">
                         <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] flex items-center gap-2">
-                            <i data-lucide="fingerprint" class="w-3 h-3 text-[#D4AF37]"></i> Identity Protocol
+                            <i data-lucide="fingerprint" class="w-3 h-3 text-[#B8964B]"></i> Identity Protocol
                         </h3>
-                        <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2 py-0.5 rounded">Verified Account</span>
+                        <span class="text-[9px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Verified Account</span>
                     </div>
 
-                    <div class="luxury-card p-8 bg-white/[0.02] border border-white/5 rounded-[3rem] space-y-8">
+                    <div class="luxury-card p-8 bg-white border border-slate-200 rounded-[3rem] space-y-8 shadow-sm">
                         <!-- Full Name -->
                         <div class="space-y-3">
-                            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Executive Name (اصلی نام)</label>
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Executive Name (اصلی نام)</label>
                             <div class="relative group">
-                                <i data-lucide="user" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-[#D4AF37] transition-colors"></i>
+                                <i data-lucide="user" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#B8964B] transition-colors"></i>
                                 <input type="text" id="set-admin-name" value="${config.adminName}" placeholder="Enter full name"
-                                       class="w-full bg-black/60 border border-white/10 rounded-[1.5rem] pl-14 pr-6 py-5 text-base text-white focus:border-[#D4AF37] focus:ring-4 focus:ring-[#D4AF37]/5 outline-none transition-all font-semibold">
+                                       class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] pl-14 pr-6 py-5 text-base text-slate-900 focus:border-[#B8964B] focus:ring-4 focus:ring-[#B8964B]/5 outline-none transition-all font-semibold">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <!-- Email -->
                             <div class="space-y-3">
-                                <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Secure Email</label>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Secure Email</label>
                                 <div class="relative group">
-                                    <i data-lucide="mail" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-[#D4AF37] transition-colors"></i>
+                                    <i data-lucide="mail" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#B8964B] transition-colors"></i>
                                     <input type="email" id="set-admin-email" value="${config.adminEmail || ''}" placeholder="executive@abd.com"
-                                           class="w-full bg-black/60 border border-white/10 rounded-[1.5rem] pl-14 pr-6 py-5 text-sm text-white focus:border-[#D4AF37] outline-none transition-all">
+                                           class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] pl-14 pr-6 py-5 text-sm text-slate-900 focus:border-[#B8964B] outline-none transition-all">
                                 </div>
                             </div>
                             <!-- Phone -->
                             <div class="space-y-3">
-                                <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Encrypted Phone</label>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Encrypted Phone</label>
                                 <div class="relative group">
-                                    <i data-lucide="phone" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-[#D4AF37] transition-colors"></i>
+                                    <i data-lucide="phone" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#B8964B] transition-colors"></i>
                                     <input type="text" id="set-admin-phone" value="${config.adminPhone || ''}" placeholder="+92 ..."
-                                           class="w-full bg-black/60 border border-white/10 rounded-[1.5rem] pl-14 pr-6 py-5 text-sm text-white focus:border-[#D4AF37] outline-none transition-all">
+                                           class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] pl-14 pr-6 py-5 text-sm text-slate-900 focus:border-[#B8964B] outline-none transition-all">
                                 </div>
                             </div>
                         </div>
 
                         <!-- Bio / Description -->
                         <div class="space-y-3">
-                            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Executive Bio</label>
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Executive Bio</label>
                             <div class="relative group">
-                                <i data-lucide="file-text" class="absolute left-5 top-6 w-5 h-5 text-slate-500 group-focus-within:text-[#D4AF37] transition-colors"></i>
+                                <i data-lucide="file-text" class="absolute left-5 top-6 w-5 h-5 text-slate-400 group-focus-within:text-[#B8964B] transition-colors"></i>
                                 <textarea id="set-admin-bio" rows="3" placeholder="Describe your executive mission..."
-                                       class="w-full bg-black/60 border border-white/10 rounded-[1.5rem] pl-14 pr-6 py-5 text-sm text-white focus:border-[#D4AF37] outline-none transition-all resize-none">${config.adminBio || ''}</textarea>
+                                       class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] pl-14 pr-6 py-5 text-sm text-slate-900 focus:border-[#B8964B] outline-none transition-all resize-none">${config.adminBio || ''}</textarea>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <!-- Role Selection -->
                             <div class="space-y-3">
-                                <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Strategic Role</label>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Strategic Role</label>
                                 <div class="relative group">
-                                    <i data-lucide="shield" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-[#D4AF37] transition-colors"></i>
-                                    <select id="set-admin-role-select" class="w-full bg-black/60 border border-white/10 rounded-[1.5rem] pl-14 pr-10 py-5 text-sm text-white outline-none appearance-none focus:border-[#D4AF37] cursor-pointer">
+                                    <i data-lucide="shield" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#B8964B] transition-colors"></i>
+                                    <select id="set-admin-role-select" class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] pl-14 pr-10 py-5 text-sm text-slate-900 outline-none appearance-none focus:border-[#B8964B] cursor-pointer">
                                         <option value="Executive Owner" ${role === 'Executive Owner' ? 'selected' : ''}>Owner (دکان مالک)</option>
                                         <option value="Operations Manager" ${role === 'Operations Manager' ? 'selected' : ''}>Manager (منیجر)</option>
                                         <option value="Staff Executive" ${role === 'Staff Executive' ? 'selected' : ''}>Employee (ملازم)</option>
                                     </select>
-                                    <i data-lucide="chevron-down" class="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none"></i>
+                                    <i data-lucide="chevron-down" class="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none"></i>
                                 </div>
                             </div>
                             <!-- Location -->
                             <div class="space-y-3">
-                                <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Primary HQ Location</label>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Primary HQ Location</label>
                                 <div class="relative group">
-                                    <i data-lucide="map-pin" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-[#D4AF37] transition-colors"></i>
+                                    <i data-lucide="map-pin" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#B8964B] transition-colors"></i>
                                     <input type="text" id="set-admin-location" value="${config.adminLocation || ''}" placeholder="City, Country"
-                                           class="w-full bg-black/60 border border-white/10 rounded-[1.5rem] pl-14 pr-6 py-5 text-sm text-white focus:border-[#D4AF37] outline-none transition-all">
+                                           class="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] pl-14 pr-6 py-5 text-sm text-slate-900 focus:border-[#B8964B] outline-none transition-all">
                                 </div>
                             </div>
                         </div>
 
-                        <button id="btn-save-profile" class="w-full py-6 bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#B8962F] text-black font-black text-xs uppercase tracking-[0.4em] rounded-[1.5rem] hover:scale-[1.02] active:scale-95 transition-all shadow-[0_25px_50px_rgba(212,175,85,0.2)] flex items-center justify-center gap-4 group">
+                        <button id="btn-save-profile" class="w-full py-6 bg-gradient-to-r from-[#B8964B] via-[#D4AF37] to-[#B8964B] text-white font-black text-xs uppercase tracking-[0.4em] rounded-[1.5rem] hover:scale-[1.02] active:scale-95 transition-all shadow-xl flex items-center justify-center gap-4 group">
                             <i data-lucide="refresh-cw" class="w-5 h-5 group-hover:rotate-180 transition-transform duration-700"></i> Synchronize Cloud Profile
                         </button>
                     </div>
@@ -139,22 +139,22 @@ export function getProfilePageHTML(config) {
                 <!-- HUB MANAGEMENT (SIMPLIFIED) -->
                 <section class="space-y-6">
                     <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] flex items-center gap-2">
-                        <i data-lucide="layout-grid" class="w-3 h-3 text-[#D4AF37]"></i> Enterprise Infrastructure
+                        <i data-lucide="layout-grid" class="w-3 h-3 text-[#B8964B]"></i> Enterprise Infrastructure
                     </h3>
-                    <div class="luxury-card p-8 bg-white/[0.02] border border-white/5 rounded-[3rem] space-y-8">
+                    <div class="luxury-card p-8 bg-white border border-slate-200 rounded-[3rem] space-y-8 shadow-sm">
                         <div id="settings-shops-list" class="space-y-4">
                             <!-- Shop items would be injected here if needed, but for now we focus on profile -->
                         </div>
 
-                        <div class="pt-6 border-t border-white/5">
-                             <p class="text-[9px] text-slate-500 text-center uppercase tracking-[0.3em]">Infrastructure controlled by Global Command</p>
+                        <div class="pt-6 border-t border-slate-100">
+                             <p class="text-[9px] text-slate-400 text-center uppercase tracking-[0.3em]">Infrastructure controlled by Global Command</p>
                         </div>
                     </div>
                 </section>
 
                 <div class="flex flex-col items-center gap-4 pb-12">
-                    <img src="https://images.unsplash.com/photo-1599305090598-fe179d501c27?q=80&w=100" class="w-12 opacity-20 grayscale" alt="Logo">
-                    <p class="text-[8px] text-slate-600 uppercase tracking-[0.6em]">ABD ENTERPRISE IDENTITY MANAGEMENT v4.5</p>
+                    <img src="https://images.unsplash.com/photo-1599305090598-fe179d501c27?q=80&w=100" class="w-12 opacity-40 grayscale" alt="Logo">
+                    <p class="text-[8px] text-slate-400 uppercase tracking-[0.6em]">ABD ENTERPRISE IDENTITY MANAGEMENT v4.5</p>
                 </div>
             </div>
         </div>

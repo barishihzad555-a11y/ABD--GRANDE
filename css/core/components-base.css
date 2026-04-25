@@ -1,15 +1,15 @@
 /*
     ABD LUXURY | BASE COMPONENT STYLES
-    Buttons, Inputs, Tables, etc.
+    Buttons, Inputs, Tables, etc. - Light Professional Standard
 */
 
 .btn-luxury {
-    background: linear-gradient(135deg, #1A1F2B 0%, #11141C 100%);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    color: #F8FAFC;
+    background: var(--accent-gradient);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #000000;
     padding: 0.75rem 1.5rem;
     border-radius: 1rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.7rem;
@@ -17,14 +17,20 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    box-shadow: 0 4px 10px rgba(184, 150, 75, 0.3);
 }
 
 .input-luxury {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #FFFFFF;
+    border: 1.5px solid #D1D5DB;
     border-radius: 1.25rem;
     padding: 1rem 1.25rem;
-    color: white;
+    color: #1A1F2B;
+    font-weight: 600;
+}
+
+.input-luxury::placeholder {
+    color: #9CA3AF;
 }
 
 th {
@@ -32,14 +38,17 @@ th {
     padding: 20px 16px;
     font-size: 10px;
     text-transform: uppercase;
-    color: var(--accent);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-    font-weight: 800;
+    color: #1A1F2B;
+    background: #F3F4F6;
+    border-bottom: 2px solid #D1D5DB;
+    font-weight: 900;
 }
 
 td {
     padding: 20px 16px;
     font-size: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
-    color: #CBD5E1;
+    border-bottom: 1px solid #E5E7EB;
+    color: #374151;
+    background: #FFFFFF;
 }
+

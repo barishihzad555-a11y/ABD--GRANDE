@@ -21,11 +21,11 @@ export function getFeaturedCameraHTML() {
             <div class="camera-hud">
                 <div class="flex items-center gap-2">
                     <div class="rec-dot"></div>
-                    <span class="text-[9px] font-black text-white uppercase tracking-[0.2em]">AIRPORT ROAD GRANDE - CAM_01</span>
+                    <span class="text-[9px] font-black text-slate-900 uppercase tracking-[0.2em]">AIRPORT ROAD GRANDE - CAM_01</span>
                 </div>
                 <div class="flex gap-2">
-                    <span class="text-[8px] font-mono text-emerald-500 bg-black/40 px-2 py-0.5 rounded border border-emerald-500/20">4K HDR</span>
-                    <span class="text-[8px] font-mono text-[#D4AF37] bg-black/40 px-2 py-0.5 rounded border border-[#D4AF37]/20">60 FPS</span>
+                    <span class="text-[8px] font-mono text-emerald-600 bg-white/60 px-2 py-0.5 rounded border border-emerald-500/20">4K HDR</span>
+                    <span class="text-[8px] font-mono text-[#B8964B] bg-white/60 px-2 py-0.5 rounded border border-[#B8964B]/20">60 FPS</span>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@ export function getCameraPage() {
         <div class="h-full flex flex-col gap-4 overflow-hidden">
             <div class="flex justify-between items-end shrink-0">
                 <div>
-                    <h2 class="text-xl font-light text-white uppercase tracking-tighter">Command Vision</h2>
+                    <h2 class="text-xl font-light text-slate-900 uppercase tracking-tighter">Command Vision</h2>
                     <p class="text-[8px] text-slate-500 font-bold uppercase tracking-[0.3em]">Global Surveillance</p>
                 </div>
                 <div class="flex gap-2">
@@ -68,7 +68,7 @@ export function getCameraPage() {
             <div class="flex-1 overflow-y-auto custom-scroll pr-1">
                 <div class="grid grid-cols-1 gap-4">
                     ${shopsData.map(shop => `
-                        <div class="camera-preview-card group cursor-pointer" onclick="window.app.openCameraDetail('${shop.name}')">
+                        <div class="camera-preview-card group cursor-pointer border-slate-200 bg-white overflow-hidden shadow-sm" onclick="window.app.openCameraDetail('${shop.name}')">
                             <div class="camera-monitor !h-40">
                                 <div class="camera-overlay"></div>
                                 <div class="camera-hud">
@@ -82,12 +82,12 @@ export function getCameraPage() {
                                     <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600" alt="Cam Feed" class="w-full h-full object-cover">
                                 </div>
                             </div>
-                            <div class="p-3 flex justify-between items-center bg-black/20">
+                            <div class="p-3 flex justify-between items-center bg-slate-50 border-t border-slate-100">
                                 <div class="cam-meta">
-                                    <h4 class="text-[9px] font-bold text-white uppercase tracking-widest">NODE_${shop.id.toString().padStart(3, '0')}</h4>
+                                    <h4 class="text-[9px] font-bold text-slate-900 uppercase tracking-widest">NODE_${shop.id.toString().padStart(3, '0')}</h4>
                                     <p class="text-[7px] text-slate-500 uppercase">${shop.status} | 24 FPS</p>
                                 </div>
-                                <i data-lucide="maximize-2" class="w-4 h-4 text-slate-500"></i>
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-slate-400"></i>
                             </div>
                         </div>
                     `).join('')}
@@ -104,49 +104,49 @@ export function getCameraDetailPage(cameraName) {
     return `
         <div class="h-full flex flex-col gap-4 overflow-hidden">
             <div class="flex justify-between items-center shrink-0">
-                <button onclick="window.app.goBack()" class="flex items-center gap-2 text-[9px] font-bold text-slate-500 uppercase tracking-widest">
+                <button onclick="window.app.goBack()" class="flex items-center gap-2 text-[9px] font-bold text-slate-600 uppercase tracking-widest">
                     <i data-lucide="chevron-left" class="w-4 h-4"></i> GRID
                 </button>
-                <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full text-[8px] font-bold uppercase tracking-widest border border-emerald-500/20">ENCRYPTED</span>
+                <span class="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[8px] font-bold uppercase tracking-widest border border-emerald-100">ENCRYPTED</span>
             </div>
 
-            <div class="flex-1 luxury-card p-1 relative overflow-hidden">
-                <div class="w-full h-full bg-black rounded-xl overflow-hidden relative group">
+            <div class="flex-1 luxury-card p-1 relative overflow-hidden bg-white border-slate-200">
+                <div class="w-full h-full bg-slate-900 rounded-xl overflow-hidden relative group">
                     <div class="camera-overlay"></div>
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200" class="w-full h-full object-cover opacity-80">
 
                     <div class="absolute top-4 left-4 flex items-center gap-3 z-30">
                         <div class="rec-dot scale-125"></div>
                         <div>
                             <h2 class="text-white font-bold text-[10px] tracking-widest uppercase">${cameraName}</h2>
-                            <p class="text-[7px] text-slate-400 uppercase">Primary Feed</p>
+                            <p class="text-[7px] text-slate-300 uppercase">Primary Feed</p>
                         </div>
                     </div>
 
                     <div class="absolute bottom-4 right-4 flex gap-2 z-30">
-                        <button class="btn-cam-mini !w-8 !h-8 bg-black/60"><i data-lucide="camera" class="w-4 h-4"></i></button>
-                        <button class="btn-cam-mini !w-8 !h-8 bg-red-600/60 border-none"><i data-lucide="circle" class="w-4 h-4"></i></button>
+                        <button class="btn-cam-mini !w-8 !h-8 bg-black/60"><i data-lucide="camera" class="w-4 h-4 text-white"></i></button>
+                        <button class="btn-cam-mini !w-8 !h-8 bg-red-600/60 border-none"><i data-lucide="circle" class="w-4 h-4 text-white"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="shrink-0 luxury-card p-4 grid grid-cols-3 gap-4 items-center">
+            <div class="shrink-0 luxury-card p-4 grid grid-cols-3 gap-4 items-center bg-white border-slate-200 shadow-sm">
                 <div class="space-y-1">
                     <p class="text-[7px] text-slate-500 uppercase font-black">Bitrate</p>
-                    <p class="text-[10px] font-mono text-white">12.4 Mbps</p>
+                    <p class="text-[10px] font-mono text-slate-900">12.4 Mbps</p>
                 </div>
                 <div class="flex justify-center">
                     <div class="grid grid-cols-3 gap-1">
-                        <div></div><button class="w-6 h-6 flex items-center justify-center bg-white/5 rounded"><i data-lucide="chevron-up" class="w-3 h-3"></i></button><div></div>
-                        <button class="w-6 h-6 flex items-center justify-center bg-white/5 rounded"><i data-lucide="chevron-left" class="w-3 h-3"></i></button>
-                        <div class="w-6 h-6 bg-[#D4AF37]/20 rounded"></div>
-                        <button class="w-6 h-6 flex items-center justify-center bg-white/5 rounded"><i data-lucide="chevron-right" class="w-3 h-3"></i></button>
-                        <div></div><button class="w-6 h-6 flex items-center justify-center bg-white/5 rounded"><i data-lucide="chevron-down" class="w-3 h-3"></i></button><div></div>
+                        <div></div><button class="w-6 h-6 flex items-center justify-center bg-slate-100 rounded text-slate-600"><i data-lucide="chevron-up" class="w-3 h-3"></i></button><div></div>
+                        <button class="w-6 h-6 flex items-center justify-center bg-slate-100 rounded text-slate-600"><i data-lucide="chevron-left" class="w-3 h-3"></i></button>
+                        <div class="w-6 h-6 bg-[#B8964B]/20 rounded"></div>
+                        <button class="w-6 h-6 flex items-center justify-center bg-slate-100 rounded text-slate-600"><i data-lucide="chevron-right" class="w-3 h-3"></i></button>
+                        <div></div><button class="w-6 h-6 flex items-center justify-center bg-slate-100 rounded text-slate-600"><i data-lucide="chevron-down" class="w-3 h-3"></i></button><div></div>
                     </div>
                 </div>
                 <div class="text-right space-y-1">
                     <p class="text-[7px] text-slate-500 uppercase font-black">Latency</p>
-                    <p class="text-[10px] font-mono text-emerald-500">18ms</p>
+                    <p class="text-[10px] font-mono text-emerald-600">18ms</p>
                 </div>
             </div>
         </div>
